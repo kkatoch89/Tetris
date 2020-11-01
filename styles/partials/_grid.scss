@@ -1,16 +1,19 @@
 .grid {
 	width: 20rem;
 	height: 40rem;
-	background-color: peachpuff;
+	background-color: $gridColor;
 	display: flex;
 	flex-wrap: wrap;
 	// flex-direction: column;
+	margin: 0 4rem;
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 .grid div {
 	height: 2rem;
 	width: 2rem;
-	border: 1px solid black;
+	border: 1px solid $gridLines;
 	// background-color: orangered;
 }
 

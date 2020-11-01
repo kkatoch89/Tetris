@@ -1,3 +1,47 @@
 .container {
   display: flex;
+  align-items: center;
+  border: double 5px #590995;
+  border-radius: 1.5rem;
+  padding: 2rem 3rem;
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 7rem;
+  color: #03c4a1;
+  background-color: line;
+}
+
+body {
+  	background: linear-gradient(
+			0deg,
+			rgba(3, 3, 3, 0.7),
+			rgba(3, 3, 3, 0.7)
+		),
+		url(../../assets/backgroundImg.jpg);
+  background-size: cover;
+  // background-repeat: no-repeat;
+  background-position: center;
+}
+
+.wrapper {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previewBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    color: $titleColor;
+    border-bottom: 5px double $titleColor;
+  }
 }

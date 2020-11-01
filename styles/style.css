@@ -338,6 +338,24 @@ textarea {
   overflow: hidden;
 }
 
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Press Start 2P Regular"), local("PressStart2P-Regular"), url(https://fonts.gstatic.com/s/pressstart2p/v9/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Roboto Bold"), local("Roboto-Bold"), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -346,6 +364,63 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: double 5px #590995;
+  border-radius: 1.5rem;
+  padding: 2rem 3rem;
+}
+
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 7rem;
+  color: #03c4a1;
+  background-color: line;
+}
+
+body {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(3, 3, 3, 0.7)), to(rgba(3, 3, 3, 0.7))), url(../../assets/backgroundImg.jpg);
+  background: linear-gradient(0deg, rgba(3, 3, 3, 0.7), rgba(3, 3, 3, 0.7)), url(../../assets/backgroundImg.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.wrapper {
+  padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.previewBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.previewBox h2 {
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+  color: #03c4a1;
+  border-bottom: 5px double #03c4a1;
 }
 
 .shapeBlock {
@@ -359,18 +434,21 @@ html {
 .grid {
   width: 20rem;
   height: 40rem;
-  background-color: peachpuff;
+  background-color: #E8E8E8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin: 0 4rem;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .grid div {
   height: 2rem;
   width: 2rem;
-  border: 1px solid black;
+  border: 1px solid #017bca;
 }
 
 .landed.base {
@@ -385,12 +463,14 @@ html {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background-color: peachpuff;
-  margin: 0 4rem;
+  background-color: #E8E8E8;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 1rem 0;
 }
 
 .miniGrid > div {
   height: 2rem;
   width: 2rem;
-  border: 1px solid black;
+  border: 1px solid #017bca;
 }
