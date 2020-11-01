@@ -1,0 +1,19 @@
+.grid {
+	width: 20rem;
+	height: 40rem;
+	background-color: peachpuff;
+	display: flex;
+	flex-wrap: wrap;
+	// flex-direction: column;
+}
+
+.grid div {
+	height: 2rem;
+	width: 2rem;
+	border: 1px solid black;
+	// background-color: orangered;
+}
+
+.landed.base {
+	opacity: 0;
+}

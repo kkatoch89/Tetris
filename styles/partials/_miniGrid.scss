@@ -1,0 +1,14 @@
+.miniGrid {
+  width: 8rem;
+  height: 8rem; 
+  display: flex;
+  flex-wrap: wrap;
+  background-color: peachpuff;
+  margin: 0 4rem;
+}
+
+.miniGrid div {
+  height: 2rem;
+	width: 2rem;
+	border: 1px solid black;
+}
