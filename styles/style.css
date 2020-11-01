@@ -348,6 +348,14 @@ html {
   display: flex;
 }
 
+.shapeBlock {
+  background-color: orangered;
+}
+
+.landed {
+  background-color: royalblue;
+}
+
 .grid {
   width: 20rem;
   height: 40rem;
@@ -370,8 +378,8 @@ html {
 }
 
 .miniGrid {
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 12rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -381,16 +389,8 @@ html {
   margin: 0 4rem;
 }
 
-.miniGrid div {
+.miniGrid > div {
   height: 2rem;
   width: 2rem;
   border: 1px solid black;
-}
-
-.shapeBlock {
-  background-color: orangered;
-}
-
-.landed {
-  background-color: royalblue;
 }

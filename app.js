@@ -47,9 +47,10 @@ let currentRotation = 0;
 
 // Shape randomizer & first rotation of said shapes
 // This is to get things started, shape randomizer is called everytime a new block starts printing
-const randomPicker = (arr) =>
-	arr[Math.floor(Math.random() * blockShapes.length)];
-let randomShape = randomPicker(blockShapes);
+const randomPicker = () => Math.floor(Math.random() * blockShapes.length);
+// const randomPicker = (arr) =>
+// 	arr[Math.floor(Math.random() * blockShapes.length)];
+let randomShape = blockShapes[randomPicker()];
 let current = randomShape[currentRotation];
 
 // Drawing the shapes
@@ -106,8 +107,8 @@ function landing() {
 			blocksArray[currentPosition + index].classList.add('landed')
 		);
 		// New shape falling
-		randomShape = nextRandom;
-		nextRandom = randomPicker(blockShapes);
+		randomShape = blockShapes[nextRandom];
+		nextRandom = randomPicker();
 		current = randomShape[currentRotation];
 		currentPosition = 4;
 		draw();
@@ -163,17 +164,17 @@ function rotate() {
 }
 
 // show next block shape in mini-grid display
-const displaySquares = document.querySelectorAll('.mini-grid div');
-const displayWidth = 4;
-let displayIndex = 0;
+const displaySquares = document.querySelectorAll('.miniGrid div');
+const displayWidth = 5;
+let displayIndex = displayWidth + 1;
 
 // blocks without rotations
 const upNextShapes = [
-	[1, width + 1, width * 2 + 1, 2], //lBlock
-	[width + 1, width + 2, width * 2, width * 2 + 1], //zBlock
-	[1, width, width + 1, width + 2], //tBlock
-	[1, width + 1, width * 2 + 1, width * 3 + 1], //oBlock
-	[1, width + 1, width * 2 + 1, width * 3 + 1] //iBlock
+	[1, displayWidth + 1, displayWidth * 2 + 1, 2], //lBlock
+	[displayWidth + 1, displayWidth + 2, displayWidth * 2, displayWidth * 2 + 1], //zBlock
+	[1, displayWidth, displayWidth + 1, displayWidth + 2], //tBlock
+	[1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //oBlock
+	[1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iBlock
 ];
 
 // display the shape in the mini-grid display
@@ -182,6 +183,7 @@ function displayShape() {
 	displaySquares.forEach(square => {
 		square.classList.remove('shapeBlock');
 	})
+	console.log(upNextShapes[nextRandom])
 	upNextShapes[nextRandom].forEach(index => {
 		displaySquares[displayIndex + index].classList.add('shapeBlock')
 	})
