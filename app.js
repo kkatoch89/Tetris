@@ -1,8 +1,11 @@
 const blocksArray = $('.grid > div').toArray();
 const copyBlocksArray = Array.from(document.querySelectorAll('.grid div'));
+const startBtn = document.querySelector('#startBtn');
+const scoreDisplay = document.querySelector('score');
 const blocks = $('.grid > div');
 const width = 10;
-let nextRandom = 0;
+let nextRandom;
+let timerId;
 
 // Shapes
 const lBlock = [
@@ -48,8 +51,6 @@ let currentRotation = 0;
 // Shape randomizer & first rotation of said shapes
 // This is to get things started, shape randomizer is called everytime a new block starts printing
 const randomPicker = () => Math.floor(Math.random() * blockShapes.length);
-// const randomPicker = (arr) =>
-// 	arr[Math.floor(Math.random() * blockShapes.length)];
 let randomShape = blockShapes[randomPicker()];
 let current = randomShape[currentRotation];
 
@@ -69,9 +70,6 @@ function undraw() {
 		blocksArray[currentPosition + index].classList.remove('shapeBlock');
 	});
 }
-
-// Make shapes move down at set interval (1s)
-const timerId = setInterval(moveDown, 1000);
 
 // Assign functions to keyCodes
 function control(e) {
@@ -154,6 +152,9 @@ function moveRight() {
 } 
 
 function rotate() {
+	// **to fix -> block rotation if the next rotation creates a situation where some of the blocks are
+	// both on the right AND left edge. This would indicate that the shape was too long and it teleported to other
+	// edge of grid as a result
 	undraw();
 	currentRotation++;
 	if(currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
@@ -173,18 +174,32 @@ const upNextShapes = [
 	[1, displayWidth + 1, displayWidth * 2 + 1, 2], //lBlock
 	[displayWidth + 1, displayWidth + 2, displayWidth * 2, displayWidth * 2 + 1], //zBlock
 	[1, displayWidth, displayWidth + 1, displayWidth + 2], //tBlock
-	[1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //oBlock
-	[1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1] //iBlock
+	[0, 1, displayWidth, displayWidth + 1], //oBlock
+	[1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //iBlock
 ];
 
 // display the shape in the mini-grid display
 function displayShape() {
+	console.log(nextRandom);
 	// clear mini-grid of any previous shape displayed
 	displaySquares.forEach(square => {
 		square.classList.remove('shapeBlock');
 	})
-	console.log(upNextShapes[nextRandom])
 	upNextShapes[nextRandom].forEach(index => {
 		displaySquares[displayIndex + index].classList.add('shapeBlock')
 	})
 }
+
+// Adding functionality to button
+startBtn.addEventListener('click', () => {
+	if (timerId) {
+		clearInterval(timerId);
+		timerId = null;
+	} else {
+		draw();
+		timerId = setInterval(moveDown, 1000);
+		nextRandom = randomPicker();
+		console.log(nextRandom)
+		displayShape();
+	}
+})
