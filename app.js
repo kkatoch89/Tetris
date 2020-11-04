@@ -156,10 +156,29 @@ function rotate() {
 	// both on the right AND left edge. This would indicate that the shape was too long and it teleported to other
 	// edge of grid as a result
 	undraw();
+	const prevRotation = currentRotation;
 	currentRotation++;
+	
+
 	if(currentRotation === current.length) { //if the current rotation gets to 4, make it go back to 0
 		currentRotation = 0;
 	}
+
+	current = randomShape[currentRotation];
+
+	let rEdge = false;
+	let lEdge = false;
+
+	current.forEach(index => {
+		if ((currentPosition + index) % width === 0) {
+			lEdge = true;
+		} else if ((currentPosition + index + 1) % width === 0) {
+			rEdge = true;
+		}
+	})
+
+	currentRotation = rEdge && lEdge ? prevRotation : currentRotation;
+
 	current = randomShape[currentRotation];
 	draw();
 }
