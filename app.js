@@ -96,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	function landing() {
 		if (
 			current.some((index) =>
-				blocks[currentPosition + index + width].classList.contains(
-					'landed'
-				)
+				blocks[currentPosition + index + width].classList.contains('landed')
 			)
 		) {
 			current.forEach((index) =>
@@ -112,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			draw();
 			displayShape();
 			addScore();
+			gameOver();
 		}
 	}
 
@@ -248,10 +247,25 @@ document.addEventListener('DOMContentLoaded', () => {
 				scoreDisplay.innerHTML = score;
 				row.forEach((index) => {
 					blocks[index].classList.remove('landed');
+					blocks[index].classList.remove('shapeBlock');
 				});
 				const blocksRemoved = blocks.splice(i, width);
-				console.log(blocksRemoved);
+				blocks = blocksRemoved.concat(blocks);
+				blocks.forEach((cell) => grid.appendChild(cell));
 			}
 		}
 	}
+
+	// Game over
+	function gameOver() {
+		if (
+			current.some((index) =>
+				blocks[currentPosition + index].classList.contains('landed')
+			)
+		) {
+			scoreDisplay.innerHTML = 'GAME OVER!';
+			clearInterval(timerId)
+		}
+	}
 });
+

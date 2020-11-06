@@ -457,6 +457,10 @@ h1 {
   background-color: rgba(51, 51, 51, 0.7);
 }
 
+.score {
+  display: block;
+}
+
 .btn {
   height: 4rem;
   color: #E8E8E8;
