@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	let blocks = Array.from(document.querySelectorAll('.grid div'));
 	const startBtn = document.querySelector('#startBtn');
 	const scoreDisplay = document.querySelector('#score');
-	const width = 10;
+	const gameOverBox = document.querySelector('.gameOverBox');
+	const width = 10;	
 	let score = 0;
 	let nextRandom = 0;
+	let gameEnd = false;
 	let timerId;
 
 	// Shapes
@@ -215,6 +217,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Adding functionality to button
 	startBtn.addEventListener('click', () => {
+
+		if (gameEnd) {
+			gameOverBox.classList.add('hide');
+			score = 0
+			scoreDisplay.innerHTML = score;
+			currentPosition = 4;
+			for (let i = 0; i <= 199; i++) {
+				blocks[i].classList.remove('shapeBlock');
+				blocks[i].classList.remove('landed');
+			}
+			gameEnd = false;
+		}
+
 		if (timerId) {
 			clearInterval(timerId);
 			timerId = null;
@@ -263,8 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				blocks[currentPosition + index].classList.contains('landed')
 			)
 		) {
-			scoreDisplay.innerHTML = 'GAME OVER!';
-			clearInterval(timerId)
+			gameOverBox.classList.remove('hide');
+			gameEnd = true;
+			clearInterval(timerId);
+			timerId = null;
 		}
 	}
 });

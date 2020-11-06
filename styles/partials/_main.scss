@@ -5,6 +5,7 @@
   border-radius: 1.5rem;
   padding: 2rem 3rem;
   margin-top: 1rem;
+  position: relative;
 }
 
 .previewBox {
@@ -28,18 +29,21 @@
   justify-content: space-between;
 }
 
-.scoreText {
+.scoreBox {
   height: 9rem;
-  // border: 2px solid orangered;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0;
+  flex-wrap: wrap;
+  text-align: center;
+  // padding: 1rem 0;
   background-color: rgba($color: #333, $alpha: .7);
+  line-height: 1.6;
 }
 
 .score {
   display: block;
+  color: $titleColor;
 }
 
 .btn {
@@ -49,10 +53,41 @@
   text-transform: uppercase;
   background-color: $gridLines;
   // border: ;
+  z-index: 10;
 }
 
 h3 {
-  font-size: 2rem;
-  font-family: 'Roboto', sans-serif;
-  color: #c62a88;
+  font-size: 1.5rem;
+  // font-family: 'Roboto', sans-serif;
+  font-family: 'Press Start 2P', cursive;
+  color: $alternateColor;
+}
+
+.gameOverBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(#333, .6);
+  border-radius: 1.5rem;
+}
+
+.gameOver {
+  font-size: 5rem;
+  animation: colorChange .4s infinite;
+}
+
+@keyframes colorChange {
+  0% {color: $titleColor}
+  50% {color: $alternateColor}
+  100% {color: $alternateColor}
+}
+
+.hide {
+  display: none;
 }
