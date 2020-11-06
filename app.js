@@ -88,10 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Shapes falling function
 	function moveDown() {
-		undraw();
-		currentPosition += width;
-		draw();
-		landing();
+		if(!gameEnd) {
+			undraw();
+			currentPosition += width;
+			draw();
+			landing();
+		}
 	}
 
 	// Stop shape upon landing
@@ -118,71 +120,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Logic to stop shapes from breaking when pushed beyond edge
 	function moveLeft() {
-		undraw();
-		const leftEdge = current.some(
-			(index) => (currentPosition + index) % width === 0
-		);
+		if (!gameEnd) {
+			undraw();
+			const leftEdge = current.some(
+				(index) => (currentPosition + index) % width === 0
+			);
 
-		if (!leftEdge) currentPosition -= 1;
+			if (!leftEdge) currentPosition -= 1;
 
-		if (
-			current.some((index) =>
-				blocks[currentPosition + index].classList.contains('landed')
-			)
-		) {
-			currentPosition += 1;
+			if (
+				current.some((index) =>
+					blocks[currentPosition + index].classList.contains('landed')
+				)
+			) {
+				currentPosition += 1;
+			}
+			draw();
 		}
-		draw();
 	}
 
 	function moveRight() {
-		undraw();
-		const rightEdge = current.some(
-			(index) => (currentPosition + index + 1) % width === 0
-		);
+		if (!gameEnd) {
+			undraw();
+			const rightEdge = current.some(
+				(index) => (currentPosition + index + 1) % width === 0
+			);
 
-		if (!rightEdge) currentPosition += 1;
+			if (!rightEdge) currentPosition += 1;
 
-		if (
-			current.some((index) =>
-				blocks[currentPosition + index].classList.contains('landed')
-			)
-		) {
-			currentPosition -= 1;
+			if (
+				current.some((index) =>
+					blocks[currentPosition + index].classList.contains('landed')
+				)
+			) {
+				currentPosition -= 1;
+			}
+			draw();
 		}
-		draw();
 	}
 
 	function rotate() {
-		// block rotation if the next rotation creates a situation where some of the blocks are
-		// both on the right AND left edge. This would indicate that the shape was too long and it teleported to other
-		// edge of grid as a result
-		undraw();
-		const prevRotation = currentRotation;
-		currentRotation++;
+		if (!gameEnd) {
+			// block rotation if the next rotation creates a situation where some of the blocks are
+			// both on the right AND left edge. This would indicate that the shape was too long and it teleported to other
+			// edge of grid as a result
+			undraw();
+			const prevRotation = currentRotation;
+			currentRotation++;
 
-		if (currentRotation === current.length) {
-			//if the current rotation gets to 4, make it go back to 0
-			currentRotation = 0;
-		}
-
-		current = randomShape[currentRotation];
-
-		let rEdge = false;
-		let lEdge = false;
-
-		current.forEach((index) => {
-			if ((currentPosition + index) % width === 0) {
-				lEdge = true;
-			} else if ((currentPosition + index + 1) % width === 0) {
-				rEdge = true;
+			if (currentRotation === current.length) {
+				//if the current rotation gets to 4, make it go back to 0
+				currentRotation = 0;
 			}
-		});
 
-		currentRotation = rEdge && lEdge ? prevRotation : currentRotation;
+			current = randomShape[currentRotation];
 
-		current = randomShape[currentRotation];
-		draw();
+			let rEdge = false;
+			let lEdge = false;
+
+			current.forEach((index) => {
+				if ((currentPosition + index) % width === 0) {
+					lEdge = true;
+				} else if ((currentPosition + index + 1) % width === 0) {
+					rEdge = true;
+				}
+			});
+
+			currentRotation = rEdge && lEdge ? prevRotation : currentRotation;
+
+			current = randomShape[currentRotation];
+			draw();
+		}
 	}
 
 	// show next block shape in mini-grid display
