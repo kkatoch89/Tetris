@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let score = 0;
 	let nextRandom = 0;
 	let gameEnd = false;
+	let pause = false;
 	let timerId;
 
 	// Shapes
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Shapes falling function
 	function moveDown() {
-		if(!gameEnd) {
+		if (!gameEnd && !pause) {
 			undraw();
 			currentPosition += width;
 			draw();
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Logic to stop shapes from breaking when pushed beyond edge
 	function moveLeft() {
-		if (!gameEnd) {
+		if (!gameEnd && !pause) {
 			undraw();
 			const leftEdge = current.some(
 				(index) => (currentPosition + index) % width === 0
@@ -140,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function moveRight() {
-		if (!gameEnd) {
+		if (!gameEnd && !pause) {
 			undraw();
 			const rightEdge = current.some(
 				(index) => (currentPosition + index + 1) % width === 0
@@ -160,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function rotate() {
-		if (!gameEnd) {
+		if (!gameEnd && !pause) {
 			// block rotation if the next rotation creates a situation where some of the blocks are
 			// both on the right AND left edge. This would indicate that the shape was too long and it teleported to other
 			// edge of grid as a result
@@ -241,12 +242,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (timerId) {
 			clearInterval(timerId);
 			timerId = null;
+			pause = true;
 		} else {
 			draw();
 			timerId = setInterval(moveDown, 1000);
 			nextRandom = randomPicker();
 			displayShape();
+			pause = false;
 		}
+
+		console.log(gameEnd);
 	});
 
 	// Add score

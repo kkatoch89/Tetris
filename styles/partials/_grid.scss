@@ -13,7 +13,9 @@
 .grid div {
 	height: 2rem;
 	width: 2rem;
-	border: 1px solid $gridLines;
+	// border: 1px solid $gridLines;
+	    border:1px solid darken(#f0f0f0,20);
+    box-shadow:0 0 200px 0 #000;
 	// background-color: orangered;
 }
 

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-items: center;
-  border: double 5px #590995;
+  border: double 5px $btnColor;
   border-radius: 1.5rem;
   padding: 2rem 3rem;
   margin-top: 1rem;
@@ -51,9 +51,26 @@
   color: $gridColor;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
-  background-color: $gridLines;
-  // border: ;
+  background-color: $btnColor;
+  
+  border: 2px double $titleColor;
+  border-radius: 5px;
   z-index: 10;
+  -webkit-box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.3);
+  -moz-box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.3);
+  box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.3);
+
+  &:hover, &:focus {
+    -webkit-box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.4);
+    -moz-box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.4);
+    box-shadow: 0px 5px 7px 0px rgba(3, 3, 3, 0.4);
+  }
+
+  &:active {
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(3, 3, 3, 0.4);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(3, 3, 3, 0.4);
+    box-shadow: 0px 3px 5px 0px rgba(3, 3, 3, 0.4);
+  }
 }
 
 h3 {

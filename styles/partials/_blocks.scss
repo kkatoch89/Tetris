@@ -1,5 +1,7 @@
 .shapeBlock {
 	background-color: orangered;
+	border:1px solid darken(orangered,20);
+	box-shadow:inset 0 0 1px 1px lighten(orangered,20);
 }
 
 .landed {
