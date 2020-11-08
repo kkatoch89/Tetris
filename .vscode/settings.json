@@ -4,7 +4,12 @@
 			"format": "expanded",
 			"extensionName": ".css",
 			"savePath": "/styles"
-		}
+		},
+		    {
+            "format": "compressed",
+            "extensionName": ".min.css",
+            "savePath": null
+        },
 	],
 	"liveSassCompile.settings.excludeList": ["**/node_modules/**", ".vscode/**"],
 	"liveSassCompile.settings.generateMap": false,

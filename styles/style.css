@@ -361,8 +361,8 @@ html {
 }
 
 body {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(3, 3, 3, 0.7)), to(rgba(3, 3, 3, 0.7))), url(../../assets/backgroundImg.jpg);
-  background: linear-gradient(0deg, rgba(3, 3, 3, 0.7), rgba(3, 3, 3, 0.7)), url(../../assets/backgroundImg.jpg);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(3, 3, 3, 0.7)), to(rgba(3, 3, 3, 0.7))), url(../assets/backgroundImg.jpg);
+  background: linear-gradient(0deg, rgba(3, 3, 3, 0.7), rgba(3, 3, 3, 0.7)), url(../assets/backgroundImg.jpg);
   background-size: cover;
   background-position: center;
 }

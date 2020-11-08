@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	$(document).on('keydown', control);
+	// $(document).on('keydown', control);
+	document.addEventListener('keydown', control);
 
 	// Shapes falling function
 	function moveDown() {
